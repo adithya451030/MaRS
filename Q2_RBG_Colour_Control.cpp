@@ -25,7 +25,7 @@ void loop()
 
   unsigned long currentMillis = millis(); // Get current time
 
-  int interval = 50 + (sensorValue / 2);  // // Adds a minimum delay to prevent very fast blinking
+  int interval = 50 + (sensorValue / 2);  // // Adds a minimum delay to prevent very fast blinking. 50 is added for better results
 
   if (currentMillis - previousMillis >= interval)
   {
