@@ -1,6 +1,3 @@
-const int ledPin = 13;
-const int buttonPin = 2;
-
 unsigned long previousMillis = 0;
 unsigned long randomDelayTime = 0;
 unsigned long startTime = 0;
@@ -11,8 +8,8 @@ int state = 0;
 int lastButtonState = HIGH;
 
 void setup() {
-  pinMode(ledPin, OUTPUT);
-  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(13, OUTPUT);
+  pinMode(2, INPUT_PULLUP);
   Serial.begin(9600);
 
   randomSeed(analogRead(0));
@@ -23,19 +20,19 @@ void setup() {
 
 void loop() {
   unsigned long currentMillis = millis();
-  int currentButtonState = digitalRead(buttonPin);
+  int currentButtonState = digitalRead(2);
 
   switch (state) {
     // STATE 0: WAIT RANDOM TIME
     case 0:
       if (currentButtonState == LOW && lastButtonState == HIGH) {
-        Serial.println("Too Early! Wait for LED.");
+        Serial.println("Too Early!");
         previousMillis = currentMillis;
         randomDelayTime = random(2000, 5000);
       }
 
       if (currentMillis - previousMillis >= randomDelayTime) {
-        digitalWrite(ledPin, HIGH);
+        digitalWrite(13, HIGH);
         startTime = currentMillis;
         state = 1;
       }
@@ -46,7 +43,7 @@ void loop() {
 
         delay(50); // simple debounce
 
-        if (digitalRead(buttonPin) == LOW) {
+        if (digitalRead(2) == LOW) {
 
           unsigned long reactionTime = currentMillis - startTime;
 
@@ -54,7 +51,7 @@ void loop() {
           Serial.print(reactionTime);
           Serial.println(" ms");
 
-          digitalWrite(ledPin, LOW);
+          digitalWrite(13, LOW);
 
           previousMillis = currentMillis;
           state = 2;
