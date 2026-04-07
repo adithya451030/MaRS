@@ -37,7 +37,7 @@ void loop()
   int potValue = analogRead(A0);     // Read analog value
   int threshold = (potValue / 10)+10;// Set adjustable threshold
 
-  // 🔹 Display values
+  //  Display values
   Serial.print("Distance: ");
   Serial.print(distance);
   Serial.print(" cm  | Threshold: ");
