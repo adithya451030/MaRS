@@ -2,8 +2,7 @@ unsigned long previousMillis = 0; // Stores the time that any changes happen bef
 int ledState = 0;        // LED ON/OFF state for blinking
 int sensorValue = 0;     // Stores potentiometer value
 
-long time;               // Stores pulse duint sensorValue = 0;          // Stores analog input
-
+long time;  
 unsigned long previousMillis = 0; // Stores last time LED ON/OFF
 int ledState = 0;                 //ON/OFF state of LED
 
@@ -39,7 +38,8 @@ void loop()
     ledState = 1 - ledState;         // LED state (0 <-> 1)
     digitalWrite(13, ledState);      // Apply state to LED
   }
-}ration
+}
+
 int distance;            // Stores calculated distance
 
 void setup()
