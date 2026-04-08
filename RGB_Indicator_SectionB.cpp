@@ -1,6 +1,3 @@
-const int trigPin = 9;   // Ultrasonic trigger pin
-const int echoPin = 8;   // Ultrasonic echo pin
-
 long time;               // Stores pulse duration
 int distance;            // Stores calculated distance
 
@@ -10,8 +7,8 @@ int sensorValue = 0;     // Stores potentiometer value
 
 void setup()
 {
-  pinMode(trigPin, OUTPUT); // Set trigger as output
-  pinMode(echoPin, INPUT);  // Set echo as input
+  pinMode(9, OUTPUT); // Set trigger as output
+  pinMode(8, INPUT);  // Set echo as input
 
   pinMode(3, OUTPUT); // RGB Red pin
   pinMode(5, OUTPUT); // RGB Green pin
@@ -22,22 +19,22 @@ void setup()
 
 void loop()
 {
-  //  Ultrasonic signal generation
-  digitalWrite(trigPin, LOW);        // Ensure LOW
+  // Ultrasonic signal generation
+  digitalWrite(9, LOW);        // Ensure LOW
   delayMicroseconds(2);              // Small delay
 
-  digitalWrite(trigPin, HIGH);       // Send pulse
+  digitalWrite(9, HIGH);       // Send pulse
   delayMicroseconds(10);   
-  digitalWrite(trigPin, LOW);        // Stop pulse
+  digitalWrite(9, LOW);        // Stop pulse
 
-  time = pulseIn(echoPin, HIGH);     // Measure echo time
+  time = pulseIn(8, HIGH);     // Measure echo time
   distance = time * 0.034 / 2;       // Convert to distance in cm
 
-  //  Potentiometer reading
+  // Potentiometer reading
   int potValue = analogRead(A0);     // Read analog value
   int threshold = (potValue / 10)+10;// Set adjustable threshold
 
-  //  Display values
+  // Display values
   Serial.print("Distance: ");
   Serial.print(distance);
   Serial.print(" cm  | Threshold: ");
@@ -45,7 +42,7 @@ void loop()
 
   unsigned long currentMillis = millis(); // Current time
 
-  //  Brightness control
+  // Brightness control
   sensorValue = analogRead(A0);     // Read potentiometer again
   int val = sensorValue / 4;        // Convert to PWM range (0–255)
 
